@@ -3,12 +3,17 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
+.container{
+    width: 100vw;
+    height: 100%;
+}
 header {
     width: 100%;
-    background: #BBBBBB;
+    background: linear-gradient(45deg, white,grey,cyan);
     padding: 20px 0;
 }
-.caja{
+.caja, main{
     width: 80%;
     max-width: 940px;
     position: relative;
@@ -160,6 +165,46 @@ nav a:active{
     color: #fff;
     margin: 20px;
 }
+/*Hoja de estilos de productos*/
+
+.productos {
+    width: 100%;
+    max-width: 96   0px;
+    margin: 0 auto;
+    padding: 50px;
+
+}
+
+.productos li {
+    display: inline-block;
+    text-align: center;
+    width: 30%;
+    vertical-align: top;
+    margin: 0 1.5%;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    border: 2px solid #000;
+    border-radius:25px;
+}
+.productos li:hover{
+    border: 2px solid hsl(0, 100%, 50%);
+}
+.productos li:active{
+    border-color: forestgreen;
+    border-width: 5px;
+}
+.productos li img{
+    width: 100%;
+}
+.producto-descripcion {
+    font-size: 18px;
+}
+
+.producto-precio {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
 
 @media screen and (max-width:700px){
     nav{
@@ -177,6 +222,13 @@ nav a:active{
     .video{
     width: 60%;
 }
+@media screen and (max-width:400px){
+    main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
 
 @media screen and (max-width:520px){
     .diferenciales h2{
