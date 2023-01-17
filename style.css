@@ -3,10 +3,9 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-
 .container{
     width: 100vw;
-    height: 100%;
+    
 }
 header {
     width: 100%;
@@ -19,6 +18,21 @@ header {
     position: relative;
     margin: 0 auto;
 }
+.caja h1{
+    display: inline-block;
+    animation: animation1 6s linear 0s infinite;
+}
+@keyframes animation1 {
+  0% {
+    transform: rotateY(0);
+    
+  }
+  100% {
+    transform: rotateY(360deg);
+    
+  }
+  
+}
 nav{
     position: absolute;
     top: 110px;
@@ -28,8 +42,6 @@ nav li {
     display: inline;
     margin: 0 0 0 15px;
 }
-
-
 nav a {
     text-transform: uppercase;
     color: #000000;
@@ -48,7 +60,6 @@ nav a:active{
 .menu{
     display: none;
     width: 100%;
-/*    height: 40px;*/
     font-size:1.4em;
     position: sticky;
     top: 0;
@@ -61,21 +72,6 @@ nav a:active{
 .hidden{
     display: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .imagen{
     height: 300px;
     background-image: url('imagenes/banner.jpg');
@@ -156,6 +152,7 @@ nav a:active{
     padding-bottom: 3em;
 }
 .footer{
+    height: 400px;
     background: url(imagenes/bg.jpg);
     color: #fff;
     text-align: center;
@@ -167,8 +164,11 @@ nav a:active{
 }
 /*Hoja de estilos de productos*/
 
-.productos {
+.list-productos {
     display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
     width: 100%;
     max-width: 960px;
     margin: 0 auto;
@@ -176,10 +176,10 @@ nav a:active{
 
 }
 
-.productos li {
-    display: inline-block;
+.list-productos li {
+    list-style: none;
     text-align: center;
-    width: 30%;
+    width: 40%;
     vertical-align: top;
     margin: 0 1.5%;
     padding: 30px 20px;
@@ -187,14 +187,14 @@ nav a:active{
     border: 2px solid #000;
     border-radius:25px;
 }
-.productos li:hover{
+.list-productos li:hover{
     border: 2px solid hsl(0, 100%, 50%);
 }
-.productos li:active{
+.list-productos li:active{
     border-color: forestgreen;
     border-width: 5px;
 }
-.productos li img{
+.list-productos li img{
     width: 100%;
 }
 .producto-descripcion {
@@ -335,25 +335,16 @@ td, th{
         display: block;
     }
     .nav-menu {
-    position: static;
-    background: green;
+        position: static;
+        background: green;
     }
     .nav-menu a{
-    text-align: center;
-    display: block;
-    width: 100%;
-    padding: 10px 0;
-    border: 1px solid #000;
+        text-align: center;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        border: 1px solid #000;
     }
-    .productos{
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-    .productos li{
-        width: 50%;
-    }
-
   
 }
 @media screen and (max-width:400px){
