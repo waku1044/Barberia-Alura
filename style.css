@@ -20,6 +20,9 @@ header{
     background-size: 100%;
     background-attachment: fixed;
 }
+.fondo{
+    background-color: rgb(85, 59, 11);
+}
 .slide{
     background-image: url(imagenes/banner1.jpg);
     background-attachment: fixed;
