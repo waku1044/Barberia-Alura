@@ -34,19 +34,19 @@
         </div>
         <div class="container">
             <main>
-            	<form action="" id="formulario">
+            	<form action="mailto:walterg610@gmail.com" method="Post" id="formulario">
     	        	<label for="nombreapellido" >Nombre y Apellido</label>
-    	        	<input type="text" id="nombreapellido" class="input-padron" required>
+    	        	<input type="text" id="nombreapellido" name="nombre y apellido" class="input-padron" required>
 
     	        	<label for="email" >Correo Electronico</label>
-    	        	<input type="email" id="email" placeholder="email@dominio.com" class="input-padron" required>
+    	        	<input type="email" id="email" name="email" placeholder="email@dominio.com" class="input-padron" required>
 
     	        	<label for="telefono" >Teléfono</label>
-    	        	<input type="tel" id="telefono" placeholder="(xx) xxxx xxxx" class="input-padron" required>
+    	        	<input type="tel" id="telefono" name="telefono" placeholder="(xx) xxxx xxxx" class="input-padron" required>
 
                     
                     <label for="mensaje" >Mensaje</label>
-                    <textarea  id="mensaje" placeholder="Escribe tu mensaje aqui" class="input-padron"></textarea>
+                    <textarea  id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aqui" class="input-padron"></textarea>
                     
                     <fieldset class="datos">
                         
@@ -75,7 +75,7 @@
                         
                     </fieldset>
 
-                    <label for="checkbox" class="checkbox"><input type="checkbox" id="checkbox" checked>¿Le gustaria recibir novedades de Barberia Alura?</label>
+                    <label for="checkbox" class="checkbox"><input type="checkbox" name="checkbox" id="checkbox" checked>¿Le gustaria recibir novedades de Barberia Alura?</label>
 
             		<input type="submit" value="Enviar formulario" id="enviar">
             	</form>
