@@ -96,9 +96,9 @@
 					
 				</section>
 				<a name="reserva"></a>
-				<section class="reserva">
+				<section class="reserva w-75 mx-auto py-5">
 					<form>
-						<fieldset class="row p-4">
+						<fieldset class="row px-4">
 						  <legend class="text-center mb-3">Reserva Online</legend>
 						  <div class="mb-3 col-6">
 							<label for="disabledTextInput" class="form-label">Nombre</label>
@@ -118,7 +118,7 @@
 						  </div>
 						  
 						  <div class="mb-3 col-12">
-							<label for="servicio" class="form-label">Elige un Servicio</label>
+							<label for="servicio" class="form-label">Elíge un Servicio</label>
 							<select id="servicio" class="form-select">
 								<option value="" disabled selected>Elige un Servicio</option>
 									<option value="corte de cabello">Corte de Cabello</option>
@@ -129,8 +129,8 @@
 						  </div>
 
 						  <div class="mb-3 col-6">
-							<label for="disabledTextInput" class="form-label">Elíge una Fecha</label>
-							<input type="date" id="fecha" name="fecha" min="" required >
+							<label for="fecha" class="form-label">Elíge una Fecha</label>
+							<input type="date" id="fecha" name="fecha" class="form-control" min="" required >
 						  </div>
 						  
 						  <div class="mb-3 col-6">
@@ -162,7 +162,7 @@
 						  </div>
 						  <div class="mb-3">
 						  </div>
-						  <button type="submit" class="btn btn-success">Reservar</button>
+						  <button type="submit" class="btn btn-success w-50 mx-auto">Reservar</button>
 						</fieldset>
 					  </form>
 
@@ -173,8 +173,8 @@
 					<table class="table table-bordered border-primary tablaHorarios">
 						<thead >
 							<tr>
-								<th>Día</th>
-								<th>Horario</th>
+								<th>Días</th>
+								<th>Horarios</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -213,6 +213,7 @@
 					<iframe width="100%" height="315" src="https://www.youtube.com/embed/0Zc1RnJKZko" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				</div>
 			</div>
+			
 			<footer class="footer d-flex justify-content-around align-items-center py-3" >
 	            <img src="imagenes/logo-blanco.png" class="logo border rounded-2" alt="">
 				<div class="d-flex flex-column gap-0">
@@ -223,7 +224,7 @@
 				</div>
 	        </footer>
 			<p class=" text-white bg-dark p-3 text-center">&copy Copyright<a href="https://www.destinoweb.com.ar" target="_blank" class="destinoweb"> Destino Web</a> | 2023.</p>
-		</div>
+		
 
 
 			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
