@@ -38,7 +38,7 @@
 						<a class="nav-link text-white" href="#servicios">Servicios</a>
 					  </li>
 					  <li class="nav-item">
-						<a class="nav-link text-white" href="#">Reservas</a>
+						<a class="nav-link text-white" href="#reserva">Reservas</a>
 					  </li>
 					  
 					</ul>
@@ -95,7 +95,7 @@
 					</div>
 					
 				</section>
-
+				<a name="reserva"></a>
 				<section class="reserva">
 					<form>
 						<fieldset class="row p-4">
@@ -116,7 +116,8 @@
 							<label for="disabledTextInput" class="form-label">Teléfono</label>
 							<input type="text" id="TextInput" class="form-control" >
 						  </div>
-						  <div class="mb-3 col-6">
+						  
+						  <div class="mb-3 col-12">
 							<label for="servicio" class="form-label">Elige un Servicio</label>
 							<select id="servicio" class="form-select">
 								<option value="" disabled selected>Elige un Servicio</option>
@@ -126,6 +127,12 @@
 									<option value="corte de cabello">Corte de Cabello + Perfilado de Cejas</option>
 							</select>
 						  </div>
+
+						  <div class="mb-3 col-6">
+							<label for="disabledTextInput" class="form-label">Elíge una Fecha</label>
+							<input type="date" id="fecha" name="fecha" min="" required >
+						  </div>
+						  
 						  <div class="mb-3 col-6">
 							<label for="horario" class="form-label">Elige un horario</label>
 							<select id="horario" class="form-select">
