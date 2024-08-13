@@ -1,69 +1,91 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-html{
-    margin: 0;
-    padding: 0;
+html {
+  margin: 0;
+  padding: 0;
 }
-.logo{
-    width: 18%;
-}
-header{
-    background-image: url(./imagenes/headerimg.jpg);
-    height: 10opx;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-attachment: fixed;
-}
-.fondo{
-    background-color: rgb(85, 59, 11);
-}
-.slide{
-    background-image: url(imagenes/banner1.jpg);
-    background-attachment: fixed;
-    height: 50vh;
-    width: 100%;
-    background-attachment: fixed;
-    background-position: ;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
-.utensillo{
-    background-attachment: fixed;
-    height: 50vh;
-    width: 100%;
-    background-attachment: fixed;
-    background-position: ;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
-.img-diferenciales{
-    background-attachment: fixed;
-    height: 50vh;
-    width: 100%;
-    background-attachment: fixed;
-    background-position: ;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
-.encabezado{
-    background-color: rgb(204, 192, 175);
-}
-.mapa{
+body {
     background-color: rgb(226, 225, 224);
 }
-.diferenciales{
-    background-color: rgb(204, 192, 175);
+.titulo{  
+        font-family: "Grey Qo", cursive;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 3.5rem;
+      
 }
-.footer{
-    background-image: url(./imagenes/bg.jpg);
+.titulo-principal{   
+      font-family: "Playfair Display", serif;
+      font-optical-sizing: auto;
+      font-weight: 600;
+      font-style: normal;    
 }
-.destinoweb{
-    color:darkgoldenrod;
-    text-decoration: none;
+.logo {
+  width: 18%;
+}
+header {
+  background-image: url(./imagenes/headerimg1.png);
+  /* height: 100px; */
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+}
+p{
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.slide {
+  background-image: url(./imagenes/banner1.svg);
+  background-attachment: fixed;
+  height: 50vh;
+  margin: 20px 20px;
+  background-attachment: fixed;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+.utensillo {
+  background-attachment: fixed;
+  height: 50vh;
+  width: 100%;
+  background-attachment: fixed;
+  background-position: ;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.img-diferenciales {
+  background-attachment: fixed;
+  height: 50vh;
+  width: 100%;
+  background-attachment: fixed;
+  background-position: ;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.tablaHorarios{
+    width: 75%;
+}
+.encabezado {
+  background-color: rgb(204, 192, 175);
+}
+.mapa {
+  background-color: rgb(226, 225, 224);
+}
+.diferenciales {
+  background-color: rgb(204, 192, 175);
+}
+.footer {
+  background-image: url(./imagenes/bg.jpg);
+}
+.destinoweb {
+  color: darkgoldenrod;
+  text-decoration: none;
 }
