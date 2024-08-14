@@ -8,33 +8,32 @@ html {
   padding: 0;
 }
 body {
-    background-color: rgb(226, 225, 224);
+  background-color: rgb(226, 225, 224);
+  padding-bottom: 0;
 }
-.titulo{  
-        font-family: "Grey Qo", cursive;
-        font-weight: 400;
-        font-style: normal;
-        font-size: 3.5rem;
-      
+.titulo {
+  font-family: "Grey Qo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3.5rem;
 }
-.titulo-principal{   
-      font-family: "Playfair Display", serif;
-      font-optical-sizing: auto;
-      font-weight: 600;
-      font-style: normal;    
+.titulo-principal {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 .logo {
   width: 18%;
 }
 header {
   background-image: url(./imagenes/headerimg1.png);
-  /* height: 100px; */
   width: 100%;
   background-repeat: no-repeat;
   background-size: 100%;
   background-attachment: fixed;
 }
-p{
+p {
   font-family: "Roboto Mono", monospace;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -44,7 +43,7 @@ p{
 .slide {
   background-image: url(./imagenes/banner1.svg);
   background-attachment: fixed;
-  height: 50vh;
+  height: 60vh;
   margin: 20px 20px;
   background-attachment: fixed;
   background-position: bottom;
@@ -70,22 +69,57 @@ p{
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
-.tablaHorarios{
-    width: 75%;
+.tablaHorarios {
+  width: 75%;
 }
-.encabezado {
-  background-color: rgb(204, 192, 175);
-}
+.encabezado,
 .mapa {
-  background-color: rgb(226, 225, 224);
-}
-.diferenciales {
   background-color: rgb(204, 192, 175);
+}
+.reserva {
+  width: 90%;
+}
+.servicios {
+  background-color: rgb(226, 225, 224);
+  /* background-color: rgb(204, 192, 175); */
+}
+.iframe {
+  height: 20rem;
 }
 .footer {
   background-image: url(./imagenes/bg.jpg);
+  margin-bottom: 0;
 }
 .destinoweb {
   color: darkgoldenrod;
   text-decoration: none;
+}
+@media screen and (min-width: 730px) {
+  .lista-de-servicios {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 3rem;
+  }
+}
+@media screen and (min-width: 767px) {
+  header {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    /* padding: 100px 0; */
+  }
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
+  .utensillo,
+  .img-diferenciales {
+    height: 30rem;
+  }
+  .iframe {
+    margin: 10px auto;
+    width: 75%;
+    height: 30rem;
+  }
 }
