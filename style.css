@@ -39,6 +39,9 @@ p {
   font-weight: 500;
   font-style: normal;
 }
+.error{
+  font-size: 12px;
+}
 
 .slide {
   background-image: url(./imagenes/banner1.svg);
@@ -69,8 +72,10 @@ p {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+
 .tablaHorarios {
   width: 75%;
+  border: dotted;
 }
 .encabezado,
 .mapa {

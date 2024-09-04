@@ -1,0 +1,17 @@
+{
+  "name": "proyecto-de-barberia-alura-ok",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "walter gimenez",
+  "license": "ISC",
+  "dependencies": {
+    "notiflix": "^3.2.7",
+    "notifly": "^0.0.1",
+    "proyecto-de-barberia-alura-ok": "file:"
+  }
+}
