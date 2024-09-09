@@ -11,11 +11,12 @@ const $error_apellido = document.querySelector("[data-error-apellido]");
 const $error_email = document.querySelector("[data-error-email]");
 const $error_telefono = document.querySelector("[data-error-telefono]");
 const $error_fecha = document.querySelector("[data-error-fecha]");
+const $error_servicio = document.querySelector("[data-error-servicio]");
 const $popup = document.querySelector("#popup");
 const $botonReservar = document.querySelector("#botonReservar");
 
 let errores = {};
-$fecha.addEventListener("change", ()=>{
+$fecha.addEventListener("change", () => {
   ajustarFecha();
 });
 
@@ -61,20 +62,28 @@ function ajustarFecha() {
   $horario.innerHTML = "";
   switch (diaSemana) {
     case 5:
-      console.log('Es sabado')
+      console.log("Es sabado");
       ListaHorarios(true);
       break;
     case 6:
       let option = document.createElement("option");
-    option.innerText = "No puedes seleccionar este día.";
-    $horario.appendChild(option);
+      option.innerText = "No puedes seleccionar este día.";
+      $horario.appendChild(option);
       break;
     default:
-      console.log('No es sabado ni domingo')
+      console.log("No es sabado ni domingo");
       ListaHorarios(false);
       break;
   }
-  
+};
+
+function BorrarErrores(){
+  $error_nombre.innerHTML = "";
+  $error_apellido.innerHTML = "";
+  $error_email.innerHTML = "";
+  $error_telefono.innerHTML = "";
+  $error_fecha.innerHTML = "";
+  $error_servicio.innerHTML = "";
 }
 
 function ListaHorarios(sabado) {
@@ -202,6 +211,7 @@ $email.addEventListener("change", () => {
   }
 });
 
+
 function horarioValidoSabado(horario) {
   let horaCierre = 13;
   let minutoCierre = 0;
@@ -222,8 +232,34 @@ function horarioValidoSabado(horario) {
 $botonReservar.addEventListener("click", (event) => {
   event.preventDefault();
   let error = validarCampos();
-  console.log(error);
-  console.log(Object.values(error).length);
+  
+  BorrarErrores();
+  console.log();
+  if (Object.keys(error).length > 0) {
+    if($servicio.value == "") $error_servicio.innerHTML = "El campo es obligatorio";
+    if($fecha.value == "") $error_fecha.innerHTML = "El campo es obligatorio";  
+    if (error.nombre) $error_nombre.innerHTML = error.nombre;
+    if (error.apellido) $error_apellido.innerHTML = error.apellido;
+    if (error.email) $error_email.innerHTML = error.email;
+    if (error.telefono) $error_telefono.innerHTML = error.telefono;
+    if (error.fecha) $error_fecha.innerHTML = error.fecha;
+    alert("Por favor, rellene todos los campos obligatorios");
+  }else{
+    let numero = '5493489558201';
+    let mensaje = `
+    Hola , mi nombre es ${$nombre.value} ${$apellido.value} y mi correo es ${$email.value} .
+    Quisiera reservar un turno para el dia ${$fecha.value} a las ${$horario.value}.
+    Servicio: ${$servicio.value}.
+    `;
+
+    let datos = encodeURIComponent(mensaje);
+    
+    const enlaceWhatsApp = `https://wa.me/${numero}?text=${datos}`;
+
+    // Abrir el enlace en una nueva pestaña
+    window.open(enlaceWhatsApp, '_blank');
+    console.log('se envio correctamente')
+  }
 });
 // Función para obtener la fecha en formato YYYY-MM-DD
 function formatoFecha(fecha) {
