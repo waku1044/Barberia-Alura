@@ -19,6 +19,23 @@ const $botonReservar = document.querySelector("#botonReservar");
 let numeroBarberia = prompt("Ingresa el número de la barbería al que le llegara la info del formulario: " + "" + "( codigo de area sin 0 ) + numero: ");
 
 let errores = {};
+
+// Para cerrar menu desplegable
+document.addEventListener('DOMContentLoaded', function () {
+  var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  var navbarToggler = document.querySelector('.navbar-toggler');
+  var navbarCollapse = document.getElementById('navbarNav');
+  
+  navLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+          if (navbarCollapse.classList.contains('show')) {
+              navbarToggler.click(); // Simula un clic en el botón para cerrar el menú
+          }
+      });
+  });
+});
+
+
 $fecha.addEventListener("change", () => {
   ajustarFecha();
 });
