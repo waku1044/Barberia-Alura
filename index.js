@@ -180,7 +180,7 @@ function validarCampos() {
   if ($telefono.value === "") {
     errores.telefono = "El campo es obligatorio";
   } else if (!esNumeroDeTelefono($telefono.value)) {
-    errores.telefono = "El formato no es valido";
+    errores.telefono = "Solo Numeros";
   } else {
     datosCita.telefono = $telefono.value;
   }
@@ -213,7 +213,7 @@ $telefono.addEventListener("change", () => {
   if ($telefono.value === "") {
     errores.telefono = "El campo es obligatorio";
   } else if (!esNumeroDeTelefono($telefono.value)) {
-    errores.telefono = "El formato no es valido";
+    errores.telefono = "Solo numeros";
   } else {
     errores = {};
     datosCita.telefono = $telefono.value;
@@ -263,7 +263,7 @@ $botonReservar.addEventListener("click", (event) => {
     if (error.email) $error_email.innerHTML = error.email;
     if (error.telefono) $error_telefono.innerHTML = error.telefono;
     if (error.fecha) $error_fecha.innerHTML = error.fecha;
-    alert("Por favor, rellene todos los campos obligatorios");
+    // alert("Por favor, rellene todos los campos obligatorios");
   }else{
     // let numero = '5493489558201';
     let mensaje = `
