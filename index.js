@@ -74,28 +74,36 @@ let listaHorarios = [
   "19:00 - 19:30",
   "19:30 - 20:00",
 ];
-// Función para ajustar el valor máximo permitido
+// Función para ajustar el valor máximo permitido// Función para ajustar la lista de horarios disponibles
 function ajustarFecha() {
-  const valorSeleccionado = new Date(inputFecha.value);
-  let diaSemana = valorSeleccionado.getDay();
-  console.log(diaSemana);
+  const valorSeleccionado = new Date($fecha.value);
+  const hoy = new Date();
+  const horaActual = hoy.getHours();
+  const minutoActual = hoy.getMinutes();
+  
   $horario.innerHTML = "";
-  switch (diaSemana) {
-    case 5:
-      console.log("Es sabado");
-      ListaHorarios(true);
-      break;
-    case 6:
+
+  if (valorSeleccionado.toDateString() === hoy.toDateString()) {
+    // Fecha seleccionada es hoy
+    listaHorarios.forEach(hora => {
+      const [horaInicio, minutoInicio] = hora.split(" - ")[0].split(":").map(Number);
+      if (horaInicio > horaActual || (horaInicio === horaActual && minutoInicio >= minutoActual)) {
+        let option = document.createElement("option");
+        option.setAttribute("value", hora);
+        option.innerHTML += hora + " hs";
+        $horario.appendChild(option);
+      }
+    });
+  } else {
+    // Fecha seleccionada no es hoy
+    listaHorarios.forEach(hora => {
       let option = document.createElement("option");
-      option.innerText = "No puedes seleccionar este día.";
+      option.setAttribute("value", hora);
+      option.innerHTML += hora + " hs";
       $horario.appendChild(option);
-      break;
-    default:
-      console.log("No es sabado ni domingo");
-      ListaHorarios(false);
-      break;
+    });
   }
-};
+}
 
 function BorrarErrores(){
   $error_nombre.innerHTML = "";
@@ -267,9 +275,11 @@ $botonReservar.addEventListener("click", (event) => {
   }else{
     // let numero = '5493489558201';
     let mensaje = `
+    Estra reserva fue realizada el dia: ${hoyFormatted} a las ${horaActual}
     Hola , mi nombre es ${$nombre.value} ${$apellido.value} y mi correo es ${$email.value} .
     Quisiera reservar un turno para el dia ${$fecha.value} a las ${$horario.value}.
     Servicio: ${$servicio.value}.
+    
     `;
 
     let datos = encodeURIComponent(mensaje);
@@ -289,9 +299,23 @@ function formatoFecha(fecha) {
   return `${anio}-${mes}-${dia}`;
 }
 
+// Crear un nuevo objeto Date con la fecha y hora actuales
+const ahora = new Date();
+
+// Obtener la hora actual
+const horas = ahora.getHours();
+const minutos = ahora.getMinutes();
+const segundos = ahora.getSeconds();
+
+// Mostrar la hora en formato HH:MM:SS
+const horaActual = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`;
+
+console.log("La hora actual es:", horaActual);
+
 // Obtener la fecha actual
 const hoy = new Date();
 const hoyFormatted = formatoFecha(hoy);
+
 
 // Establecer el atributo min del input de fecha
 const inputFecha = document.getElementById("fecha");
