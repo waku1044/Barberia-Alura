@@ -80,13 +80,28 @@ function ajustarFecha() {
   const hoy = new Date();
   const horaActual = hoy.getHours();
   const minutoActual = hoy.getMinutes();
-  
+
+  // Convertir la fecha seleccionada a UTC
+  const fechaSeleccionadaUTC = new Date(Date.UTC(
+    valorSeleccionado.getUTCFullYear(),
+    valorSeleccionado.getUTCMonth(),
+    valorSeleccionado.getUTCDate()
+  ));
+
+  // Convertir la fecha actual a UTC
+  const hoyUTC = new Date(Date.UTC(
+    hoy.getUTCFullYear(),
+    hoy.getUTCMonth(),
+    hoy.getUTCDate()
+  ));
+
   $horario.innerHTML = "";
 
-  if (valorSeleccionado.toDateString() === hoy.toDateString()) {
-    // Fecha seleccionada es hoy
+  if (fechaSeleccionadaUTC.getTime() === hoyUTC.getTime()) {
     listaHorarios.forEach(hora => {
       const [horaInicio, minutoInicio] = hora.split(" - ")[0].split(":").map(Number);
+      console.log(horaInicio, minutoActual);
+      console.log(horaActual, minutoActual);
       if (horaInicio > horaActual || (horaInicio === horaActual && minutoInicio >= minutoActual)) {
         let option = document.createElement("option");
         option.setAttribute("value", hora);
@@ -95,7 +110,6 @@ function ajustarFecha() {
       }
     });
   } else {
-    // Fecha seleccionada no es hoy
     listaHorarios.forEach(hora => {
       let option = document.createElement("option");
       option.setAttribute("value", hora);
@@ -104,6 +118,7 @@ function ajustarFecha() {
     });
   }
 }
+
 
 function BorrarErrores(){
   $error_nombre.innerHTML = "";
@@ -310,7 +325,7 @@ const segundos = ahora.getSeconds();
 // Mostrar la hora en formato HH:MM:SS
 const horaActual = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`;
 
-console.log("La hora actual es:", horaActual);
+// console.log("La hora actual es:", horaActual);
 
 // Obtener la fecha actual
 const hoy = new Date();
