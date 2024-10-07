@@ -16,7 +16,7 @@ const $popup = document.querySelector("#popup");
 const $botonReservar = document.querySelector("#botonReservar");
 
 
-let numeroBarberia = prompt("Ingresa el número de la barbería al que le llegara la info del formulario: " + "" + "( codigo de area sin 0 ) + numero: ");
+// let numeroBarberia = prompt("Ingresa el número de la barbería al que le llegara la info del formulario: " + "" + "( codigo de area sin 0 ) + numero: ");
 
 let errores = {};
 
@@ -74,6 +74,7 @@ let listaHorarios = [
   "19:00 - 19:30",
   "19:30 - 20:00",
 ];
+
 // Función para ajustar el valor máximo permitido// Función para ajustar la lista de horarios disponibles
 function ajustarFecha() {
   const valorSeleccionado = new Date($fecha.value);
@@ -96,7 +97,7 @@ function ajustarFecha() {
   ));
 
   $horario.innerHTML = "";
-
+    console.log(fechaSeleccionadaUTC.getTime(), hoyUTC.getTime());
   if (fechaSeleccionadaUTC.getTime() === hoyUTC.getTime()) {
     listaHorarios.forEach(hora => {
       const [horaInicio, minutoInicio] = hora.split(" - ")[0].split(":").map(Number);
@@ -261,7 +262,7 @@ function horarioValidoSabado(horario) {
   let cierreElegido = horario.slice(-5);
 
   let [hora, minutos] = cierreElegido.split(":");
-
+  console.log(hora, minutos);
   if (
     Number(hora.trim()) > horaCierre ||
     (Number(hora.trim()) == horaCierre && Number(minutos.trim()) > minutoCierre)
@@ -271,6 +272,8 @@ function horarioValidoSabado(horario) {
     return true;
   }
 }
+
+
 
 $botonReservar.addEventListener("click", (event) => {
   event.preventDefault();
@@ -299,11 +302,11 @@ $botonReservar.addEventListener("click", (event) => {
 
     let datos = encodeURIComponent(mensaje);
     
-    const enlaceWhatsApp = `https://wa.me/${numeroBarberia}?text=${datos}`;
+    // const enlaceWhatsApp = `https://wa.me/${numeroBarberia}?text=${datos}`;
 
     // Abrir el enlace en una nueva pestaña
-    window.open(enlaceWhatsApp, '_blank');
-    console.log('se envio correctamente')
+    // window.open(enlaceWhatsApp, '_blank');
+    alert('Se envio correctamente')
   }
 });
 // Función para obtener la fecha en formato YYYY-MM-DD
