@@ -16,7 +16,7 @@ const $popup = document.querySelector("#popup");
 const $botonReservar = document.querySelector("#botonReservar");
 
 
-// let numeroBarberia = prompt("Ingresa el número de la barbería al que le llegara la info del formulario: " + "" + "( codigo de area sin 0 ) + numero: ");
+let numeroBarberia = prompt("Ingresa el número de la barbería al que le llegara la info del formulario: " + "" + "( codigo de area sin 0 ) + numero: ");
 
 let errores = {};
 
@@ -302,11 +302,11 @@ $botonReservar.addEventListener("click", (event) => {
 
     let datos = encodeURIComponent(mensaje);
     
-    // const enlaceWhatsApp = `https://wa.me/${numeroBarberia}?text=${datos}`;
+    const enlaceWhatsApp = `https://wa.me/${numeroBarberia}?text=${datos}`;
 
     // Abrir el enlace en una nueva pestaña
-    // window.open(enlaceWhatsApp, '_blank');
-    alert('Se envio correctamente')
+    window.open(enlaceWhatsApp, '_blank');
+    // alert('Se envio correctamente')
   }
 });
 // Función para obtener la fecha en formato YYYY-MM-DD
