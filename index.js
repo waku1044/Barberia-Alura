@@ -16,7 +16,7 @@ const $popup = document.querySelector("#popup");
 const $botonReservar = document.querySelector("#botonReservar");
 
 
-let numeroBarberia = prompt("Ingresa el número de la barbería al que le llegara la info del formulario: " + "" + "( codigo de area sin 0 ) + numero: ");
+// let numeroBarberia = prompt("Ingresa el número de la barbería al que le llegara la info del formulario: " + "" + "( codigo de area sin 0 ) + numero: ");
 
 let errores = {};
 
@@ -291,7 +291,7 @@ $botonReservar.addEventListener("click", (event) => {
     if (error.fecha) $error_fecha.innerHTML = error.fecha;
     // alert("Por favor, rellene todos los campos obligatorios");
   }else{
-    // let numero = '5493489558201';
+    let numero = '+5493489558201';
     let mensaje = `
     Estra reserva fue realizada el dia: ${hoyFormatted} a las ${horaActual}
     Hola , mi nombre es ${$nombre.value} ${$apellido.value} y mi correo es ${$email.value} .
@@ -302,7 +302,7 @@ $botonReservar.addEventListener("click", (event) => {
 
     let datos = encodeURIComponent(mensaje);
     
-    const enlaceWhatsApp = `https://wa.me/${numeroBarberia}?text=${datos}`;
+    const enlaceWhatsApp = `https://wa.me/${numero}?text=${datos}`;
 
     // Abrir el enlace en una nueva pestaña
     window.open(enlaceWhatsApp, '_blank');
