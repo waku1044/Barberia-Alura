@@ -293,7 +293,7 @@ $botonReservar.addEventListener("click", (event) => {
   }else{
     let numero = '+5493489558201';
     let mensaje = `
-    Estra reserva fue realizada el dia: ${hoyFormatted} a las ${horaActual}
+    Esta reserva fue realizada el dia: ${hoyFormatted} a las ${horaActual}
     Hola , mi nombre es ${$nombre.value} ${$apellido.value} y mi correo es ${$email.value} .
     Quisiera reservar un turno para el dia ${$fecha.value} a las ${$horario.value}.
     Servicio: ${$servicio.value}.
