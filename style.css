@@ -99,6 +99,12 @@ p {
   color: darkgoldenrod;
   text-decoration: none;
 }
+.whatsapp{
+    width:2.5rem;
+    position:fixed ;
+    right: 40px;
+    bottom: 10px;
+}
 @media screen and (min-width: 730px) {
   .lista-de-servicios {
     display: flex;

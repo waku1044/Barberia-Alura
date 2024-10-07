@@ -1,4 +1,4 @@
-import { popup } from "./popups.js";
+
 const $nombre = document.querySelector("#nombre");
 const $apellido = document.querySelector("#apellido");
 const $email = document.querySelector("#email");
