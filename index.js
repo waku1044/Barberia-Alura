@@ -1,4 +1,3 @@
-
 const $nombre = document.querySelector("#nombre");
 const $apellido = document.querySelector("#apellido");
 const $email = document.querySelector("#email");
@@ -12,29 +11,27 @@ const $error_email = document.querySelector("[data-error-email]");
 const $error_telefono = document.querySelector("[data-error-telefono]");
 const $error_fecha = document.querySelector("[data-error-fecha]");
 const $error_servicio = document.querySelector("[data-error-servicio]");
-const $popup = document.querySelector("#popup");
+const $error_horario = document.querySelector("[data-error-horario]");
 const $botonReservar = document.querySelector("#botonReservar");
-
 
 // let numeroBarberia = prompt("Ingresa el número de la barbería al que le llegara la info del formulario: " + "" + "( codigo de area sin 0 ) + numero: ");
 
 let errores = {};
 
 // Para cerrar menu desplegable
-document.addEventListener('DOMContentLoaded', function () {
-  var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-  var navbarToggler = document.querySelector('.navbar-toggler');
-  var navbarCollapse = document.getElementById('navbarNav');
-  
+document.addEventListener("DOMContentLoaded", function () {
+  var navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+  var navbarToggler = document.querySelector(".navbar-toggler");
+  var navbarCollapse = document.getElementById("navbarNav");
+
   navLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-          if (navbarCollapse.classList.contains('show')) {
-              navbarToggler.click(); // Simula un clic en el botón para cerrar el menú
-          }
-      });
+    link.addEventListener("click", function () {
+      if (navbarCollapse.classList.contains("show")) {
+        navbarToggler.click(); // Simula un clic en el botón para cerrar el menú
+      }
+    });
   });
 });
-
 
 $fecha.addEventListener("change", () => {
   const diaSeleccionado = new Date($fecha.value).getUTCDay(); // 0 = domingo, 6 = sábado
@@ -45,7 +42,7 @@ $fecha.addEventListener("change", () => {
       let msj = document.createElement("option");
       msj.innerHTML = "Cerrado";
       $horario.appendChild(msj);
-      console.log('Cerrado')
+      console.log("Cerrado");
       break;
     case 6:
       for (let i = 0; i < 10; i++) {
@@ -64,7 +61,6 @@ $fecha.addEventListener("change", () => {
       });
   }
 });
-
 
 const datosCita = {
   nombre: "",
@@ -147,14 +143,14 @@ let listaHorarios = [
 //   }
 // }
 
-
-function BorrarErrores(){
+function BorrarErrores() {
   $error_nombre.innerHTML = "";
   $error_apellido.innerHTML = "";
   $error_email.innerHTML = "";
   $error_telefono.innerHTML = "";
   $error_fecha.innerHTML = "";
   $error_servicio.innerHTML = "";
+  $error_horario.innerHTML = "";
 }
 
 function esTexto(text) {
@@ -186,6 +182,8 @@ function esNumeroDeTelefono(number) {
 }
 
 function validarCampos() {
+  BorrarErrores();
+  console.log($servicio.value === "");
   if ($nombre.value === "") {
     errores.nombre = "El campo es obligatorio";
   } else if (!esTexto($nombre.value)) {
@@ -209,7 +207,6 @@ function validarCampos() {
   } else {
     datosCita.email = $email.value;
   }
-
   if ($telefono.value === "") {
     errores.telefono = "El campo es obligatorio";
   } else if (!esNumeroDeTelefono($telefono.value)) {
@@ -217,15 +214,22 @@ function validarCampos() {
   } else {
     datosCita.telefono = $telefono.value;
   }
-  if($servicio.value === ""){
+  if ($servicio.value === "") {
     errores.servicio = "El campo es obligatorio";
-  }else{
+  } else {
+    
     datosCita.servicio = $servicio.value;
   }
-  if($fecha.value === ""){
+  if ($fecha.value === "") {
     errores.fecha = "El campo es obligatorio";
-  }else{
+  } else {
+   
     datosCita.fecha = $fecha.value;
+  }
+  if($horario.value === "Cerrado"){
+    errores.horario = "En este dia la barberia no se encuentra cerrada";
+  }else{
+    datosCita.horario = $horario.value;
   }
   return errores;
 }
@@ -238,6 +242,32 @@ $nombre.addEventListener("change", () => {
   } else {
     errores = {};
     datosCita.nombre = $nombre.value;
+  }
+});
+
+// $horario.addEventListener("change", () => {
+//   if (!$horario.value === "Cerrado") {
+//     errores.horario = "";
+//     errores = {};
+//     datosCita.horario = $horario.value;
+//   }
+// });
+
+$fecha.addEventListener("change", () => {
+  if ($fecha.value === "") {
+    errores.fecha = "El campo es obligatorio";
+  } else {
+    errores = {};
+    datosCita.fecha = $fecha.value;
+  }
+});
+
+$servicio.addEventListener("change", () => {
+  if ($servicio.value === "") {
+    errores.servicio = "El campo es obligatorio";
+  } else {
+    errores = {};
+    datosCita.servicio = $servicio.value;
   }
 });
 
@@ -276,19 +306,20 @@ $email.addEventListener("change", () => {
 
 $botonReservar.addEventListener("click", (event) => {
   event.preventDefault();
-  BorrarErrores();
+
   let error = validarCampos();
-  
+
   console.log(error.servicio, error.fecha);
   if (Object.keys(error).length > 0) {
     if (error.servicio) $error_servicio.innerHTML = error.servicio;
-    if (error.fecha) $error_fecha.innerHTML = error.fecha;  
+    if (error.fecha) $error_fecha.innerHTML = error.fecha;
     if (error.nombre) $error_nombre.innerHTML = error.nombre;
     if (error.apellido) $error_apellido.innerHTML = error.apellido;
     if (error.email) $error_email.innerHTML = error.email;
     if (error.telefono) $error_telefono.innerHTML = error.telefono;
-  }else{
-    let numero = '+5493489558201';
+    if(error.horario) $error_horario.innerHTML = error.horario;
+  } else {
+    let numero = "+5493489558201";
     let mensaje = `
     Esta reserva fue realizada el dia: ${hoyFormatted} a las ${horaActual}
     Hola , mi nombre es ${$nombre.value} ${$apellido.value} y mi correo es ${$email.value} .
@@ -298,11 +329,11 @@ $botonReservar.addEventListener("click", (event) => {
     `;
 
     let datos = encodeURIComponent(mensaje);
-    
+
     const enlaceWhatsApp = `https://wa.me/${numero}?text=${datos}`;
 
     // Abrir el enlace en una nueva pestaña
-    window.open(enlaceWhatsApp, '_blank');
+    window.open(enlaceWhatsApp, "_blank");
     // alert('Se envio correctamente')
   }
 });
@@ -323,14 +354,15 @@ const minutos = ahora.getMinutes();
 const segundos = ahora.getSeconds();
 
 // Mostrar la hora en formato HH:MM:SS
-const horaActual = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`;
+const horaActual = `${horas.toString().padStart(2, "0")}:${minutos
+  .toString()
+  .padStart(2, "0")}`;
 
 // console.log("La hora actual es:", horaActual);
 
 // Obtener la fecha actual
 const hoy = new Date();
 const hoyFormatted = formatoFecha(hoy);
-
 
 // Establecer el atributo min del input de fecha
 const inputFecha = document.getElementById("fecha");
