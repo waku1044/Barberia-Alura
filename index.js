@@ -37,8 +37,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 $fecha.addEventListener("change", () => {
-  ajustarFecha();
+  const diaSeleccionado = new Date($fecha.value).getUTCDay(); // 0 = domingo, 6 = sábado
+  $horario.innerHTML = "";
+  switch (diaSeleccionado) {
+    case 0:
+      // $horario.innerHTML = listaHorarios.slice(0, 9).join(", ");
+      let msj = document.createElement("option");
+      msj.innerHTML = "Cerrado";
+      $horario.appendChild(msj);
+      console.log('Cerrado')
+      break;
+    case 6:
+      for (let i = 0; i < 10; i++) {
+        let option = document.createElement("option");
+        option.setAttribute("value", listaHorarios[i]);
+        option.innerHTML += listaHorarios[i] + " hs";
+        $horario.appendChild(option);
+      }
+      break;
+    default:
+      listaHorarios.forEach((hora) => {
+        let option = document.createElement("option");
+        option.setAttribute("value", hora);
+        option.innerHTML += hora + " hs";
+        $horario.appendChild(option);
+      });
+  }
 });
+
 
 const datosCita = {
   nombre: "",
@@ -76,49 +102,50 @@ let listaHorarios = [
 ];
 
 // Función para ajustar el valor máximo permitido// Función para ajustar la lista de horarios disponibles
-function ajustarFecha() {
-  const valorSeleccionado = new Date($fecha.value);
-  const hoy = new Date();
-  const horaActual = hoy.getHours();
-  const minutoActual = hoy.getMinutes();
+// function ajustarFecha() {
+//   const valorSeleccionado = new Date($fecha.value);
+//   const hoy = new Date();
+//   const horaActual = hoy.getHours();
+//   const minutoActual = hoy.getMinutes();
 
-  // Convertir la fecha seleccionada a UTC
-  const fechaSeleccionadaUTC = new Date(Date.UTC(
-    valorSeleccionado.getUTCFullYear(),
-    valorSeleccionado.getUTCMonth(),
-    valorSeleccionado.getUTCDate()
-  ));
+//   // Convertir la fecha seleccionada a UTC
+//   const fechaSeleccionadaUTC = new Date(Date.UTC(
+//     valorSeleccionado.getUTCFullYear(),
+//     valorSeleccionado.getUTCMonth(),
+//     valorSeleccionado.getUTCDate()
+//   ));
 
-  // Convertir la fecha actual a UTC
-  const hoyUTC = new Date(Date.UTC(
-    hoy.getUTCFullYear(),
-    hoy.getUTCMonth(),
-    hoy.getUTCDate()
-  ));
+//   // Convertir la fecha actual a UTC
+//   const hoyUTC = new Date(Date.UTC(
+//     hoy.getUTCFullYear(),
+//     hoy.getUTCMonth(),
+//     hoy.getUTCDate()
+//   ));
 
-  $horario.innerHTML = "";
-    console.log(fechaSeleccionadaUTC.getTime(), hoyUTC.getTime());
-  if (fechaSeleccionadaUTC.getTime() === hoyUTC.getTime()) {
-    listaHorarios.forEach(hora => {
-      const [horaInicio, minutoInicio] = hora.split(" - ")[0].split(":").map(Number);
-      console.log(horaInicio, minutoActual);
-      console.log(horaActual, minutoActual);
-      if (horaInicio > horaActual || (horaInicio === horaActual && minutoInicio >= minutoActual)) {
-        let option = document.createElement("option");
-        option.setAttribute("value", hora);
-        option.innerHTML += hora + " hs";
-        $horario.appendChild(option);
-      }
-    });
-  } else {
-    listaHorarios.forEach(hora => {
-      let option = document.createElement("option");
-      option.setAttribute("value", hora);
-      option.innerHTML += hora + " hs";
-      $horario.appendChild(option);
-    });
-  }
-}
+//   $horario.innerHTML = "";
+//   // console.log(fechaSeleccionadaUTC.getTime() === hoyUTC.getTime());
+//   // console.log(fechaSeleccionadaUTC.getTime() , hoyUTC.getTime());
+//   if (fechaSeleccionadaUTC.getTime() === hoyUTC.getTime()) {
+//     listaHorarios.forEach(hora => {
+//       const [horaInicio, minutoInicio] = hora.split(" - ")[0].split(":").map(Number);
+//       // console.log(horaInicio, minutoActual);
+//       // console.log(horaActual, minutoActual);
+//       if (horaInicio > horaActual || (horaInicio === horaActual && minutoInicio >= minutoActual)) {
+//         let option = document.createElement("option");
+//         option.setAttribute("value", hora);
+//         option.innerHTML += hora + " hs";
+//         $horario.appendChild(option);
+//       }
+//     });
+//   } else {
+//     listaHorarios.forEach(hora => {
+//       let option = document.createElement("option");
+//       option.setAttribute("value", hora);
+//       option.innerHTML += hora + " hs";
+//       $horario.appendChild(option);
+//     });
+//   }
+// }
 
 
 function BorrarErrores(){
@@ -128,24 +155,6 @@ function BorrarErrores(){
   $error_telefono.innerHTML = "";
   $error_fecha.innerHTML = "";
   $error_servicio.innerHTML = "";
-}
-
-function ListaHorarios(sabado) {
-  if (sabado) {
-    for (let i = 0; i < 10; i++) {
-      let option = document.createElement("option");
-      option.setAttribute("value", listaHorarios[i]);
-      option.innerHTML += listaHorarios[i] + " hs";
-      $horario.appendChild(option);
-    }
-  } else {
-    listaHorarios.forEach((hora) => {
-      let option = document.createElement("option");
-      option.setAttribute("value", hora);
-      option.innerHTML += hora + " hs";
-      $horario.appendChild(option);
-    });
-  }
 }
 
 function esTexto(text) {
@@ -208,6 +217,16 @@ function validarCampos() {
   } else {
     datosCita.telefono = $telefono.value;
   }
+  if($servicio.value === ""){
+    errores.servicio = "El campo es obligatorio";
+  }else{
+    datosCita.servicio = $servicio.value;
+  }
+  if($fecha.value === ""){
+    errores.fecha = "El campo es obligatorio";
+  }else{
+    datosCita.fecha = $fecha.value;
+  }
   return errores;
 }
 
@@ -255,41 +274,19 @@ $email.addEventListener("change", () => {
   }
 });
 
-
-function horarioValidoSabado(horario) {
-  let horaCierre = 13;
-  let minutoCierre = 0;
-  let cierreElegido = horario.slice(-5);
-
-  let [hora, minutos] = cierreElegido.split(":");
-  console.log(hora, minutos);
-  if (
-    Number(hora.trim()) > horaCierre ||
-    (Number(hora.trim()) == horaCierre && Number(minutos.trim()) > minutoCierre)
-  ) {
-    return false;
-  } else {
-    return true;
-  }
-}
-
-
-
 $botonReservar.addEventListener("click", (event) => {
   event.preventDefault();
+  BorrarErrores();
   let error = validarCampos();
   
-  BorrarErrores();
-  console.log();
+  console.log(error.servicio, error.fecha);
   if (Object.keys(error).length > 0) {
-    if($servicio.value == "") $error_servicio.innerHTML = "El campo es obligatorio";
-    if($fecha.value == "") $error_fecha.innerHTML = "El campo es obligatorio";  
+    if (error.servicio) $error_servicio.innerHTML = error.servicio;
+    if (error.fecha) $error_fecha.innerHTML = error.fecha;  
     if (error.nombre) $error_nombre.innerHTML = error.nombre;
     if (error.apellido) $error_apellido.innerHTML = error.apellido;
     if (error.email) $error_email.innerHTML = error.email;
     if (error.telefono) $error_telefono.innerHTML = error.telefono;
-    if (error.fecha) $error_fecha.innerHTML = error.fecha;
-    // alert("Por favor, rellene todos los campos obligatorios");
   }else{
     let numero = '+5493489558201';
     let mensaje = `
