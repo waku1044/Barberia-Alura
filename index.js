@@ -34,6 +34,26 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 $fecha.addEventListener("change", () => {
+  const valorSeleccionado = new Date($fecha.value);
+      const hoy = new Date();
+      const horaActual = hoy.getHours();
+      const minutoActual = hoy.getMinutes();
+    
+      // Convertir la fecha seleccionada a UTC
+      const fechaSeleccionadaUTC = new Date(Date.UTC(
+        valorSeleccionado.getUTCFullYear(),
+        valorSeleccionado.getUTCMonth(),
+        valorSeleccionado.getUTCDate()
+      ));
+    
+      // Convertir la fecha actual a UTC
+      const hoyUTC = new Date(Date.UTC(
+        hoy.getUTCFullYear(),
+        hoy.getUTCMonth(),
+        hoy.getUTCDate()
+      ));
+    
+      $horario.innerHTML = "";
   const diaSeleccionado = new Date($fecha.value).getUTCDay(); // 0 = domingo, 6 = sábado
   $horario.innerHTML = "";
   switch (diaSeleccionado) {
@@ -45,20 +65,49 @@ $fecha.addEventListener("change", () => {
       console.log("Cerrado");
       break;
     case 6:
-      for (let i = 0; i < 10; i++) {
-        let option = document.createElement("option");
-        option.setAttribute("value", listaHorarios[i]);
-        option.innerHTML += listaHorarios[i] + " hs";
-        $horario.appendChild(option);
-      }
+      if (fechaSeleccionadaUTC.getTime() === hoyUTC.getTime()) {
+        listaHorarios.forEach(hora => {
+          const [horaInicio, minutoInicio] = hora.split(" - ")[0].split(":").map(Number);
+         
+          if (horaInicio >= horaActual && minutoInicio >= minutoActual) {
+            let option = document.createElement("option");
+            option.setAttribute("value", hora);
+            option.innerHTML += hora + " hs";
+            $horario.appendChild(option);
+          }
+        })}else{
+          for (let i = 0; i < 10; i++) {
+            let option = document.createElement("option");
+            option.setAttribute("value", listaHorarios[i]);
+            option.innerHTML += listaHorarios[i] + " hs";
+            $horario.appendChild(option);
+          }
+
+        }
       break;
     default:
-      listaHorarios.forEach((hora) => {
-        let option = document.createElement("option");
-        option.setAttribute("value", hora);
-        option.innerHTML += hora + " hs";
-        $horario.appendChild(option);
-      });
+      
+      
+      if (fechaSeleccionadaUTC.getTime() === hoyUTC.getTime()) {
+        listaHorarios.forEach(hora => {
+          const [horaInicio, minutoInicio] = hora.split(" - ")[0].split(":").map(Number);
+          // console.log(horaInicio, minutoActual);
+          // console.log(horaActual, minutoActual);
+          if (horaInicio > horaActual || (horaInicio === horaActual && minutoInicio >= minutoActual)) {
+            let option = document.createElement("option");
+            option.setAttribute("value", hora);
+            option.innerHTML += hora + " hs";
+            $horario.appendChild(option);
+          }
+        });
+      } else {
+        listaHorarios.forEach(hora => {
+          let option = document.createElement("option");
+          option.setAttribute("value", hora);
+          option.innerHTML += hora + " hs";
+          $horario.appendChild(option);
+        });
+      }
   }
 });
 
@@ -97,7 +146,7 @@ let listaHorarios = [
   "19:30 - 20:00",
 ];
 
-// Función para ajustar el valor máximo permitido// Función para ajustar la lista de horarios disponibles
+
 // function ajustarFecha() {
 //   const valorSeleccionado = new Date($fecha.value);
 //   const hoy = new Date();
@@ -142,6 +191,10 @@ let listaHorarios = [
 //     });
 //   }
 // }
+
+$fecha.addEventListener("change", () => {
+  ajustarFecha(); // Llama a la función para ajustar horarios al cambiar la fecha
+});
 
 function BorrarErrores() {
   $error_nombre.innerHTML = "";
@@ -245,13 +298,7 @@ $nombre.addEventListener("change", () => {
   }
 });
 
-// $horario.addEventListener("change", () => {
-//   if (!$horario.value === "Cerrado") {
-//     errores.horario = "";
-//     errores = {};
-//     datosCita.horario = $horario.value;
-//   }
-// });
+
 
 $fecha.addEventListener("change", () => {
   if ($fecha.value === "") {
@@ -368,5 +415,4 @@ const hoyFormatted = formatoFecha(hoy);
 const inputFecha = document.getElementById("fecha");
 inputFecha.setAttribute("min", hoyFormatted);
 
-// Evento para verificar la selección
-inputFecha.addEventListener("change", ajustarFecha);
+
