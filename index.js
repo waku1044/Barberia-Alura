@@ -280,7 +280,7 @@ function validarCampos() {
     datosCita.fecha = $fecha.value;
   }
   if($horario.value === "Cerrado"){
-    errores.horario = "En este dia la barberia no se encuentra cerrada";
+    errores.horario = "Este dia la barberia se encuentra cerrada";
   }else{
     datosCita.horario = $horario.value;
   }
